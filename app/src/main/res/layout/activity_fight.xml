@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFCC99"
-    tools:context=".GameScreen">
+    tools:context=".Fight">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -33,7 +33,7 @@
             android:layout_margin="0dp"
             android:layout_marginHorizontal="0dp"
             android:layout_marginLeft="0dp"
-            android:layout_weight="3">
+            android:layout_weight="6">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,59 +47,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
+                    android:text="Решив свернуть с дороги, вы спускаетесь в поле неподалеку и тут, из куста неподалеку, к вам навстречу выходит гоблин, маленькое уродливое существо. Он явно настроен враждебно, приготовься драться! Свайпай 5 раз по гоблину раньше чем закончиться время!"
                     android:textColor="#7D5F0C"
                     android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/Timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="130px"
+                    android:layout_marginBottom="20dp"
+                    android:text=""
+                    android:textColor="#7D5F0C"
+                    android:textSize="65sp" />
+
             </LinearLayout>
         </ScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="40dp"
-            android:layout_weight="3"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/button1"
-                style="@style/MyButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="50sp"
-                android:layout_marginRight="50sp"
-                android:layout_weight="1"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button2"
-                style="@style/MyButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="50sp"
-                android:layout_marginRight="50sp"
-                android:layout_weight="1"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button3"
-                style="@style/MyButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="50sp"
-                android:layout_marginRight="50sp"
-                android:layout_weight="1"
-                android:text="Button" />
-
-            <Button
-                android:id="@+id/button4"
-                style="@style/MyButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="50sp"
-                android:layout_marginRight="50sp"
-                android:layout_weight="1"
-                android:text="Button" />
-
-        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

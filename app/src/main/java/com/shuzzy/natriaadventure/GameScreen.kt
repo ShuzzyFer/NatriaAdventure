@@ -1,6 +1,7 @@
 package com.shuzzy.natriaadventure
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,6 +9,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.shuzzy.natriaadventure.AppState.fought
 
 class GameScreen : AppCompatActivity() {
 
@@ -25,7 +27,7 @@ class GameScreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_game_screen)
 
-        image = findViewById(R.id.imageView)
+        image = findViewById(R.id.ImageView)
         text = findViewById(R.id.MainText)
         button1 = findViewById(R.id.button1)
         button2 = findViewById(R.id.button2)
@@ -39,5 +41,9 @@ class GameScreen : AppCompatActivity() {
         }
         story = Story(this, this)
         story.StartingPoint()
+
+        if(fought) {
+            button2.visibility = View.INVISIBLE
+        }
     }
 }
