@@ -21,11 +21,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/ImageView"
+            android:id="@+id/GoblinImage"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="5.4"
-            app:srcCompat="@drawable/kingdom" />
+            app:srcCompat="@drawable/goblin" />
 
         <ScrollView
             android:layout_width="match_parent"
