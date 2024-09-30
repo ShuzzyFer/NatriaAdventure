@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286813684361",
+    "project_id": "natria-adventure",
+    "storage_bucket": "natria-adventure.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286813684361:android:4480dd12d45aac8b937c58",
+        "android_client_info": {
+          "package_name": "com.shuzzy.natriaadventure"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOPGJJsm6OgZY-ESU9m_Vb_No5Q_nX-lY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

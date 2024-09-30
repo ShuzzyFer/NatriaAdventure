@@ -19,6 +19,7 @@ class GameScreen : AppCompatActivity() {
     lateinit var button2: Button
     lateinit var button3: Button
     lateinit var button4: Button
+    lateinit var achievManager: AchievManager
 
     private lateinit var story: Story
 
@@ -27,6 +28,8 @@ class GameScreen : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_game_screen)
 
+        achievManager = AchievManager()
+        achievManager.saveAchievement("First time", this@GameScreen)
         image = findViewById(R.id.ImageView)
         text = findViewById(R.id.MainText)
         button1 = findViewById(R.id.button1)

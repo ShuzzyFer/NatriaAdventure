@@ -9,6 +9,8 @@
     android:theme="@android:style/Theme.Black.NoTitleBar"
     tools:context=".TitleScreen">
 
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -25,27 +27,43 @@
 
     <Button
         android:id="@+id/startButton"
-        android:layout_width="238dp"
-        android:layout_height="93dp"
+        style="@style/MyButtonStyle"
+        android:layout_width="280dp"
+        android:layout_height="85dp"
         android:text="Новая игра"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.286"
-        style = "@style/MyButtonStyle"/>
+        app:layout_constraintVertical_bias="0.286" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="240dp"
-        android:layout_height="93dp"
+        android:id="@+id/achievementsButton"
+        style="@style/MyButtonStyle"
+        android:layout_width="280dp"
+        android:layout_height="85dp"
         android:text="Достижения"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.546"
-        style = "@style/MyButtonStyle"/>
+        app:layout_constraintVertical_bias="0.523" />
+
+    <Button
+        android:id="@+id/authorizationButton"
+        style="@style/MyButtonStyle"
+        android:layout_width="280dp"
+        android:layout_height="85dp"
+        android:text="Авторизация"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.757" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

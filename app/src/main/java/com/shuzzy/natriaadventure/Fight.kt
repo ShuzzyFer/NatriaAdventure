@@ -15,6 +15,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.shuzzy.natriaadventure.AppState.fought
 
 class Fight : AppCompatActivity() {
@@ -23,18 +25,19 @@ class Fight : AppCompatActivity() {
     private var SwipeNumber =5
     private var swipes = 0
     private var hasSwiped = false
-    private val swipeTimeout = 12000L // 5 секунд
+    private val swipeTimeout = 1200000L // 5 секунд
 
     private lateinit var timerTextView: TextView
     private var remainingTime = swipeTimeout // 5 секунд
     private lateinit var timer: CountDownTimer
-
+    private lateinit var achievManager: AchievManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_fight)
 
         timerTextView = findViewById(R.id.Timer)
+        achievManager=AchievManager()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -74,6 +77,9 @@ class Fight : AppCompatActivity() {
                 swipes=0
                 hasSwiped = true
                 fought = true
+
+                achievManager.saveAchievement("Easy win", this@Fight)
+
                 val intent = Intent(this@Fight, GameScreen::class.java)
                 startActivity(intent)
                 finish()
@@ -95,8 +101,9 @@ class Fight : AppCompatActivity() {
 
             override fun onFinish() {
                 if (!hasSwiped) {
-                    // Действие, если свайпа не было
-                    showFailMessage()
+                    achievManager.saveAchievement("Green lose", this@Fight)
+                    val intent = Intent(this@Fight, EndGameScreen::class.java)
+                    startActivity(intent)
                 }
             }
         }
