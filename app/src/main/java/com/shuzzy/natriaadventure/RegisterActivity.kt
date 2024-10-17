@@ -1,6 +1,8 @@
 package com.shuzzy.natriaadventure
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -18,11 +20,20 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
 
+    private fun isTablet(): Boolean {
+        val screenLayout = resources.configuration.screenLayout
+        val screenSize = screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
+        return screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        if (!isTablet()) {
+            // Если это не планшет, то блокируем ориентацию
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
 
-        // Инициализация элементов интерфейса
         registerButton = findViewById(R.id.register_button)
         emailEditText = findViewById(R.id.register_email)
         passwordEditText = findViewById(R.id.register_password)
@@ -31,15 +42,12 @@ class RegisterActivity : AppCompatActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            // Проверка на заполненность полей
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(applicationContext, "Поля не могут быть пустыми", Toast.LENGTH_SHORT).show()
             } else {
-                // Регистрация нового пользователя в Firebase
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // Сохранение информации о пользователе в Firebase Realtime Database
                             val userInfo = hashMapOf<String, String>()
                             userInfo["email"] = email
 
@@ -48,9 +56,8 @@ class RegisterActivity : AppCompatActivity() {
                                 .setValue(userInfo)
                                 .addOnCompleteListener { dbTask ->
                                     if (dbTask.isSuccessful) {
-                                        // Переход на MainActivity после успешной регистрации
                                         startActivity(Intent(this, TitleScreen::class.java))
-                                        finish() // Закрытие текущей активности
+                                        finish()
                                     } else {
                                         Toast.makeText(applicationContext, "Ошибка при сохранении данных: ${dbTask.exception?.message}", Toast.LENGTH_SHORT).show()
                                     }

@@ -1,22 +1,20 @@
 package com.shuzzy.natriaadventure
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.view.GestureDetector
 import android.view.MotionEvent
-import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.shuzzy.natriaadventure.AppState.fought
 
 class Fight : AppCompatActivity() {
@@ -25,16 +23,26 @@ class Fight : AppCompatActivity() {
     private var SwipeNumber =5
     private var swipes = 0
     private var hasSwiped = false
-    private val swipeTimeout = 1200000L // 5 секунд
+    private val swipeTimeout = 12000L
+
+    private fun isTablet(): Boolean {
+        val screenLayout = resources.configuration.screenLayout
+        val screenSize = screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
+        return screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE
+    }
 
     private lateinit var timerTextView: TextView
-    private var remainingTime = swipeTimeout // 5 секунд
+    private var remainingTime = swipeTimeout
     private lateinit var timer: CountDownTimer
     private lateinit var achievManager: AchievManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_fight)
+        if (!isTablet()) {
+            // Если это не планшет, то блокируем ориентацию
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
 
         timerTextView = findViewById(R.id.Timer)
         achievManager=AchievManager()
@@ -44,13 +52,10 @@ class Fight : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // Инициализация GestureDetector
         gestureDetector = GestureDetector(this, SwipeGestureListener())
 
-        // Запуск таймера на 5 секунд
         Handler(Looper.getMainLooper()).postDelayed({
             if (!hasSwiped) {
-                // Действие, если свайпа не было
                 showFailMessage()
             }
         }, swipeTimeout)

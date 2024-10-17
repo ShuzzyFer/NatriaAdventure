@@ -1,6 +1,8 @@
 package com.shuzzy.natriaadventure
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Email
 import android.view.View
@@ -22,10 +24,20 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var login_email: EditText
     private lateinit var login_password: EditText
 
+    private fun isTablet(): Boolean {
+        val screenLayout = resources.configuration.screenLayout
+        val screenSize = screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
+        return screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
+        if (!isTablet()) {
+            // Если это не планшет, то блокируем ориентацию
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
 
         login_button = findViewById(R.id.login_button)
         login_email = findViewById(R.id.login_email)
@@ -47,13 +59,11 @@ class LoginActivity : AppCompatActivity() {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // Успешная авторизация, можно перейти на другой экран
                             Toast.makeText(applicationContext, "Авторизация успешна", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, TitleScreen::class.java) // Переход в окно достижений
                             startActivity(intent)
                             finish()
                         } else {
-                            // Ошибка при авторизации
                             Toast.makeText(applicationContext, "Email или пароль введены неправильно", Toast.LENGTH_LONG).show()
                         }
                     }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFCC99"
-    tools:context=".Fight">
+    tools:context=".CityActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -20,19 +20,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Отображение изображения города -->
         <ImageView
-            android:id="@+id/GoblinImage"
+            android:id="@+id/CityImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5.4"
-            app:srcCompat="@drawable/goblin" />
+            app:srcCompat="@drawable/archery" />
 
+        <!-- ScrollView для текста и таймера -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="0dp"
-            android:layout_marginHorizontal="0dp"
-            android:layout_marginLeft="0dp"
             android:layout_weight="6">
 
             <LinearLayout
@@ -42,17 +42,30 @@
                 android:layout_marginVertical="10dp"
                 android:orientation="vertical">
 
+                <!-- Текст с инструкцией для игрока -->
                 <TextView
                     android:id="@+id/MainText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:text="Решив свернуть с дороги, вы спускаетесь в поле неподалеку и тут, из куста неподалеку, к вам навстречу выходит гоблин, маленькое уродливое существо. Он явно настроен враждебно, приготовься драться! Свайпай 5 раз по гоблину раньше чем закончиться время!"
+                    android:text="Вы пришли в тир города Нирон. Удерживайте палец на экране ровно в течение указанного времени, чтобы попасть в цель. Если удержите палец слишком коротко или долго, попытка не засчитывается."
                     android:textColor="#7D5F0C"
                     android:textSize="20sp" />
 
+                <!-- Текстовое поле для отображения целевого времени -->
                 <TextView
-                    android:id="@+id/Timer"
+                    android:id="@+id/targetTimeTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Удерживайте в течение 5-5.5 секунд"
+                    android:textColor="#7D5F0C"
+                    android:textSize="24sp" />
+
+                <!-- Текстовое поле для отображения таймера удержания -->
+                <TextView
+                    android:id="@+id/timerTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="130px"

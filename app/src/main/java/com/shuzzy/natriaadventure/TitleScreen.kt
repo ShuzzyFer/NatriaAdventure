@@ -1,6 +1,8 @@
 package com.shuzzy.natriaadventure
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -17,13 +19,21 @@ class TitleScreen : AppCompatActivity() {
     private lateinit var achievementsButton: Button
     private lateinit var authorizationButton: Button
 
-
+    private fun isTablet(): Boolean {
+        val screenLayout = resources.configuration.screenLayout
+        val screenSize = screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
+        return screenSize >= Configuration.SCREENLAYOUT_SIZE_LARGE
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
         enableEdgeToEdge()
         setContentView(R.layout.activity_title_screen)
+        if (!isTablet()) {
+            // Если это не планшет, то блокируем ориентацию
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
 
         if(FirebaseAuth.getInstance().currentUser==null) {
             val intent = Intent(this, LoginActivity::class.java)
@@ -37,7 +47,6 @@ class TitleScreen : AppCompatActivity() {
         authorizationButton = findViewById(R.id.authorizationButton)
 
         startButton.setOnClickListener {
-            // Ваш код для обработки нажатия на кнопку
             val intent = Intent(this, GameScreen::class.java)
             startActivity(intent)
         }

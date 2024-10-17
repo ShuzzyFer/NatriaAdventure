@@ -12,13 +12,12 @@ class AchievManager {
         val database = FirebaseDatabase.getInstance().reference
 
         if (userId != null) {
-            // Обновляем данные достижения в базе данных
             database.child("Users").child(userId).child("achievements").child(str).setValue(true)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(context, "Достижение сохранено!", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(context, "Достижение сохранено!", Toast.LENGTH_SHORT).show()
                     } else {
-                        Toast.makeText(context, "Ошибка сохранения достижения", Toast.LENGTH_SHORT).show()
+                        //Toast.makeText(context, "Ошибка сохранения достижения", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
