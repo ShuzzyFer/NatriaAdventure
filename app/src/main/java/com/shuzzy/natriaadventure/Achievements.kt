@@ -40,7 +40,14 @@ class Achievements : AppCompatActivity() {
         val stringPairs: MutableList<Pair<String, String>> = mutableListOf(
             Pair("???", "???"),
             Pair("???", "???"),
-            Pair("???", "???")
+            Pair("???", "???"),
+            Pair("???", "???"),
+            Pair("???", "???"),
+            Pair("???", "???"),
+            Pair("???", "???"),
+            Pair("???", "???"),
+            Pair("???", "???"),
+            Pair("???", "???"),
         )
 
         if (userId != null) {
@@ -56,12 +63,40 @@ class Achievements : AppCompatActivity() {
                     if(achievementsMap.containsKey("First time")) {
                         stringPairs[2] = Pair("Первый раз", "Впервые начните свое путешествие")
                     }
+                    if(achievementsMap.containsKey("Bow")) {
+                        stringPairs[3] = Pair("Стрельба из лука", "Покажите свои навыки стрельбы из лука в тире у дороги")
+                    }
+                    if(achievementsMap.containsKey("Help")) {
+                        stringPairs[4] = Pair("Помощь стражникам", "Помогите стражникам в беде")
+                    }
+                    if(achievementsMap.containsKey("Amulet")) {
+                        stringPairs[5] = Pair("Амулет", "Получите странный амулет")
+                    }
+                    if(achievementsMap.containsKey("Stories")) {
+                        stringPairs[6] = Pair("Невыдуманные истории", "Послушайте истории в таверне")
+                    }
+                    if(achievementsMap.containsKey("Player")) {
+                        stringPairs[7] = Pair("Игрок", "Сыграйте в азартные игры в таверне")
+                    }
+                    if(achievementsMap.containsKey("Merc")) {
+                        stringPairs[8] = Pair("Наемник наемника", "Примите задание наемника в таверне")
+                    }
+                    if(achievementsMap.containsKey("Art")) {
+                        stringPairs[9] = Pair("Артефакт", "Исследуйте подземелье и найдите артефакт")
+                    }
                 }
 
                 val achievements = listOf(
                     Achievement(stringPairs[0].first, R.drawable.achievement1_icon, stringPairs[0].second),
                     Achievement(stringPairs[1].first, R.drawable.achievement2_icon, stringPairs[1].second),
-                    Achievement(stringPairs[2].first, R.drawable.achievement3_icon, stringPairs[2].second)
+                    Achievement(stringPairs[2].first, R.drawable.achievement3_icon, stringPairs[2].second),
+                    Achievement(stringPairs[3].first, R.drawable.achievement4_icon, stringPairs[3].second),
+                    Achievement(stringPairs[4].first, R.drawable.achievement5_icon, stringPairs[4].second),
+                    Achievement(stringPairs[5].first, R.drawable.achievement6_icon, stringPairs[5].second),
+                    Achievement(stringPairs[6].first, R.drawable.achievement7_icon, stringPairs[6].second),
+                    Achievement(stringPairs[7].first, R.drawable.achievement8_icon, stringPairs[7].second),
+                    Achievement(stringPairs[8].first, R.drawable.achievement9_icon, stringPairs[8].second),
+                    Achievement(stringPairs[9].first, R.drawable.achievement10_icon, stringPairs[9].second)
                 )
                 val listView = findViewById<ListView>(R.id.achievementsListView)
                 val adapter = AchievementAdapter(this, achievements)

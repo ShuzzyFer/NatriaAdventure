@@ -8,6 +8,7 @@ android {
     namespace = "com.shuzzy.natriaadventure"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.shuzzy.natriaadventure"
         minSdk = 28
@@ -18,6 +19,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags += ""
+            }
         }
     }
 
@@ -46,6 +52,12 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
         }
     }
 }

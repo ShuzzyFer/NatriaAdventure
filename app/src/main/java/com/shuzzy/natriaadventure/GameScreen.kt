@@ -30,6 +30,9 @@ class GameScreen : AppCompatActivity() {
 
     private lateinit var story: Story
 
+    // Переменные для отслеживания текущего состояния
+    private var currentStoryPoint: String = "startingPoint"
+
     private fun isTablet(): Boolean {
         val screenLayout = resources.configuration.screenLayout
         val screenSize = screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
@@ -40,15 +43,14 @@ class GameScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_game_screen)
+
         if (!isTablet()) {
-            // Если это не планшет, то блокируем ориентацию
             requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
 
         achievManager = AchievManager()
         achievManager.saveAchievement("First time", this@GameScreen)
 
-        // Привязка элементов интерфейса
         image = findViewById(R.id.ImageView)
         text = findViewById(R.id.MainText)
         button1 = findViewById(R.id.button1)
@@ -64,13 +66,10 @@ class GameScreen : AppCompatActivity() {
 
         story = Story(this, this)
 
-        // Запускаем начальную точку истории
-        story.StartingPoint()
-
-        // Устанавливаем видимость кнопок, которые не используются в начале
-        button3.visibility = View.INVISIBLE
-        button4.visibility = View.INVISIBLE
+        story.StartingPoint();
     }
+
+
 
     fun resetButtonsVisibility() {
         button1.visibility = View.VISIBLE
@@ -78,4 +77,8 @@ class GameScreen : AppCompatActivity() {
         button3.visibility = View.VISIBLE
         button4.visibility = View.VISIBLE
     }
+
+
+
+
 }

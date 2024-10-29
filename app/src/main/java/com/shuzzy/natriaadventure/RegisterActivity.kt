@@ -20,6 +20,12 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
 
+    init {
+        System.loadLibrary("native-lib")
+    }
+
+    private external fun registerUserNative(email: String, password: String): Boolean
+
     private fun isTablet(): Boolean {
         val screenLayout = resources.configuration.screenLayout
         val screenSize = screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK
